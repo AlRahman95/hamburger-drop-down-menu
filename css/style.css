@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.main-nav {
+  display: flex;
+  min-height: 50px;
+  background: turquoise;
+  /*justify-content: space-between;*/
+  padding: 0 1rem;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.hamburger {
+  display: none;
+}
+
+.main-nav-list {
+  display: flex;
+  list-style: none;
+  margin-left: auto;
+}
+
+.main-nav-list li {
+  margin-left: 1rem;
+  text-align: center;
+}
+
+@media(max-width: 700px) {
+  .main-nav {
+    flex-wrap: wrap; /* allows multiple rows in flex box because display: flex forces the children of the parent container to be in one row, and this overrides it to be multiple rows if its less tha 700px */
+  }
+
+  .hamburger {
+    display: block;
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    width: 50px;
+    height: 50px;
+    position: relative;
+  }
+
+  .hamburger div {
+    height: 5px;
+    width: 40px;
+    background: gray;
+    border-radius: 5px;
+    position: absolute;
+    transform: translate(-50%, -50%); /* This moves the anchor point to the center of the element (which is the div), instead of the default anchor point which is the top left */
+    left: 50%;
+    transition: .35s;
+  }
+
+  .hamburger div:first-child {
+    top: 25%;
+  }
+
+  .hamburger div:nth-child(2) {
+    top: 50%;
+  }
+
+  .hamburger div:nth-child(3) {
+    top: 75%;
+  }
+/* putting two classes makes it more specific and allows overruling */
+  .hamburger.close div:first-child {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .hamburger.close div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.close div:nth-child(3) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .main-nav-list {
+    display: block;
+    width: 100%;
+    max-height: 0px;
+    overflow: hidden; /* Hides the content outside fo the nav box */
+    transition: .25s;
+  }
+
+  .main-nav-list.open {
+    max-height: 500px;
+  }
+}
